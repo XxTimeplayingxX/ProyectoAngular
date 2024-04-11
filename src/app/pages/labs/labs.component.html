@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Hola</h1>
+    <h2>{{ welcolme}}</h2>
+    <ul>
+      @for(task of tasks; track task){
+        <li>{{ task }}</li>
+      }
+    </ul>
+    <p>labs works!</p>
+    <hr>
+    <h2>{{'Hola'.repeat(4)}}</h2>
+    <p>La suma de 3 + 3 es {{3+3}}</p>
+    <p>Hola soy {{name()}}</p>
+    <p>Mi edad es {{person.edad}}</p>
+    <hr>
+    <input type="number" [value]="person.name" (change)="changeHandler($event)">
+    <button [disabled] = "disabled">Click me</button>
+    <img [src]="img" alt="">
+    <p>
+      persona:{{person.name}}
+    </p>
+    <hr>
+    <button (click)="clickHandler()">Click me</button>
+    <button (dblclick)="clickHandler()">Click me</button>
+    <!-- Asignar una función -->
+    <input type="text" [value]="person.name" (keydown.shift)="clickHandler()">
+    <hr>
+    <h1>Signals</h1>
+    <input type="text" [value]="name()" (change)="changeHandler($event)">
+  </div>
+</body>
+</html>
