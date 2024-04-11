@@ -10,9 +10,12 @@
     <h1>Hola</h1>
     <h2>{{ welcolme}}</h2>
     <ul>
-      @for(task of tasks; track task){
-        <li>{{ task }}</li>
+      @for(task of tasks();track task){
+        <li>
+          {{ task }}
+        </li>
       }
+      <p>total: {{tasks().length}}</p>
     </ul>
     <p>labs works!</p>
     <hr>
