@@ -24,12 +24,12 @@
           <!-- This section should be hidden by default and shown when there are todos -->
           <section class="main">
             <ul class="todo-list">
-              @for(task of tasks();track task){
+              @for(task of tasks();track task; let i = $index){
                 <li>
                   <div class="view">
                     <input class="toggle" type="checkbox" />
-                    <label>{{task}}</label>
-                    <button class="destroy"></button>
+                    <label>{{task.title}}</label>
+                    <button class="destroy" (click)="deleteTask(i)"></button>
                   </div>
                   <input class="edit" value="Buy a unicorn" />
                 </li>

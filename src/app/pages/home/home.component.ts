@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { signalUpdateFn } from '@angular/core/primitives/signals';
+import {task} from './../../models/task.model'
 
 @Component({
   selector: 'app-home',
@@ -9,17 +10,36 @@ import { signalUpdateFn } from '@angular/core/primitives/signals';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  tasks=signal([
-    'Instalar Angular CLI',
-    'Crear proyecto',
-    'Crear componentes',
-    'Crear servicios'
+  tasks=signal<task[]>([
+    {
+      id: Date.now(),
+      title: 'Crear Proyecto',
+      completed: false
+    },
+    {
+      id: Date.now(),
+      title: 'Crear componente',
+      completed: true
+    }
   ]);
 
   changeHandler(event: Event){
     const input = event.target as HTMLInputElement;
     const newTask = input.value;
-    this.tasks.update((tasks: string[]) => [...tasks, newTask]);
+    this.addTask(newTask);
     input.value="";
+  }
+  // Empezamos a dividir responsabilidades
+  addTask(title: string){
+    const newTask ={
+      id: Date.now(),
+      title, 
+      completed: false
+    };
+    this.tasks.update((tasks) => [...tasks, newTask]);
+  }
+
+  deleteTask(index:number){
+    this.tasks.update((tasks)=> tasks.filter((tasks, position)=> position !== index));
   }
 }
