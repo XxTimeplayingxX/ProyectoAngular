@@ -25,8 +25,8 @@
     <p>Mi edad es {{person.edad}}</p>
     <hr>
     <input type="number" [value]="person.name" (change)="changeHandler($event)">
-    <button [disabled] = "disabled">Click me</button>
-    <img [src]="img" alt="">
+    <button [disabled] = "name().disabled">Click me</button>
+    <img [src]=name().img alt="">
     <p>
       persona:{{person.name}}
     </p>
@@ -37,7 +37,31 @@
     <input type="text" [value]="person.name" (keydown.shift)="clickHandler()">
     <hr>
     <h1>Signals</h1>
-    <input type="text" [value]="name()" (change)="changeHandler($event)">
+    <input type="text" [value]="name().name" (change)="changeHandler($event)">
+  </div>
+  <hr>
+  <div>
+    @if (name().name === '2') {
+      <p>My content</p>
+    }
+    @if(name().name == '3' && person.edad > 18){
+      soy David y tengo 18 años
+    }@else {
+      Soy David y soy menor de edad
+    }
+    <br>
+    <input type="text" (keydown.enter)="changeHandler($event)">
+    @switch (name().name) {
+      @case (name().name == 'Nicolas') {
+        Soy Nicolas
+      }
+      @case (name().name == 'David') {
+        Soy David
+      }
+      @default {
+        No soy nadie 
+      }
+    }
   </div>
 </body>
 </html>

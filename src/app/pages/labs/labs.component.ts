@@ -15,10 +15,13 @@ export class LabsComponent {
     'Crear componentes',
     'Crear servicios'
   ]);
-  name = signal('Nicolas');
-  age = 18;
-  disabled = false;
-  img= 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQULLHHvBkdUGBht_T9U5mSa8o-ztNHVySWAgbsbmGkQw&s';
+  name = signal({
+    name: 'David',
+    age: 18,
+    disabled : false,
+    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQULLHHvBkdUGBht_T9U5mSa8o-ztNHVySWAgbsbmGkQw&s'
+
+  });
 
   person={
     name: 'David',
@@ -30,7 +33,7 @@ export class LabsComponent {
   changeHandler(event: Event){
     const input = event.target as HTMLInputElement;
     const newValue = input.value;
-    this.name.set(newValue);
+    this.name().name = newValue;
   }
   keydownHandler(evet: KeyboardEvent){
     const input = evet.target as HTMLInputElement;
