@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { signalUpdateFn } from '@angular/core/primitives/signals';
 import {task} from './../../models/task.model'
+import { FormControl, FormGroup, ReactiveFormsModule, Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -23,11 +24,21 @@ export class HomeComponent {
     }
   ]);
 
-  changeHandler(event: Event){
-    const input = event.target as HTMLInputElement;
-    const newTask = input.value;
-    this.addTask(newTask);
-    input.value="";
+  newTaskControl = new FormControl('',{
+    nonNullable: true,
+    validators:[
+      Validators.required
+    ]
+  }
+  )
+
+  changeHandler(){
+    console.log(this.newTaskControl.valid)
+    if(this.newTaskControl.status === 'VALID'){
+      const value = this.newTaskControl.value;
+      this.addTask(value);
+    }
+    this.newTaskControl.setValue('');
   }
   // Empezamos a dividir responsabilidades
   addTask(title: string){
